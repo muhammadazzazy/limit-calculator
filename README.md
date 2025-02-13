@@ -1,8 +1,8 @@
 # Limit Calculator
-This is a Python implementation for a program that computes limits for mathematical expressions including infinite limits. For this program to work as intended, three distinct inputs are required:
+This is a Python implementation for a program that computes limits for mathematical expressions including infinite limits. If the value of For this program to work as intended, three distinct inputs are required:
 1. Symbol of variable
 2. Mathematical expression for which the limit needs to be found
-3. Value of limit
+3. Some value
 
 This program requires Python 3 which can be installed from [here](https://www.python.org/downloads/).
 
