@@ -3,8 +3,11 @@ import sympy
 
 
 def main() -> None:
-    print('Welcome to The Limit Calculator!')
-    print("Enter 'inf' or 'infinity' for an infinite limit when prompted to enter a limit.")
+    greeting: str = """Welcome to The Limit 🖩!\n
+    Enter 'inf' or 'infinity' for an infinite limit when prompted to enter a limit.
+    """
+    print(greeting)
+    exit_message: str = 'Exiting program...'
     while True:
         try:
             symbol: sympy.core.symbol.Symbol = sympy.symbols(
@@ -28,12 +31,13 @@ def main() -> None:
             if choice.lower() == 'y':
                 continue
             else:
-                print('Thanks for trying my program!')
+                print(exit_message)
                 exit()
 
         except ValueError:
-            print('Invalid input...')
+            print(exit_message)
             continue
+
         except KeyboardInterrupt:
             print('Exiting...')
             exit()
