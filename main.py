@@ -1,46 +1,48 @@
 from sys import exit
 import sympy
+from word2number import w2n
 
 
 def main() -> None:
-    greeting: str = """Welcome to The Limit 🖩!\n
-    Enter 'inf' or 'infinity' for an infinite limit when prompted to enter a limit.
-    """
+    greeting: str = """Welcome to The Limit 🖩!
+Enter 'inf' or 'infinity' for an infinite limit when prompted to enter a limit."""
     print(greeting)
     exit_message: str = 'Exiting program...'
     while True:
         try:
-            symbol: sympy.core.symbol.Symbol = sympy.symbols(
-                input('Enter a symbol: '))
+            user_input: str = input('Enter a symbol: ')
+
+            if user_input.isalpha() and len(user_input) == 1:
+                symbol: sympy.core.symbol.Symbol = sympy.symbols(user_input)
+            else:
+                print('Please enter a valid symbol...')
+                continue
 
             math_expr: str = input('Enter a mathematical expression: ')
 
-            lim: float = float(input('Enter a limt: '))
+            user_input: str = input('Enter a limit: ')
 
-            result = sympy.limit(math_expr, symbol, lim)
-
-            if type(result) == sympy.core.numbers.Integer:
-                print(f'{result}')
-            elif type(result) == sympy.core.numbers.Float:
-                print(f'{result:.3f}')
+            if user_input.isalpha() and user_input != 'inf' and user_input != 'infinity':
+                lim: float = w2n.word_to_num(user_input)
             else:
-                print(f'{result}')
-
-            choice: str = input(
-                'Do you want to continue using the program? (Y/n) ')
-            if choice.lower() == 'y':
-                continue
-            else:
-                print(exit_message)
-                exit()
+                lim: float = float(user_input)
 
         except ValueError:
-            print(exit_message)
+            print('Please enter valid input...')
             continue
 
         except KeyboardInterrupt:
-            print('Exiting...')
+            print(exit_message)
             exit()
+
+        result = sympy.limit(math_expr, symbol, lim)
+
+        if type(result) == sympy.core.numbers.Integer:
+            print(f'{result}')
+        elif type(result) == sympy.core.numbers.Float:
+            print(f'{result:.3f}')
+        else:
+            print(f'{result}')
 
 
 if __name__ == '__main__':
