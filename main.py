@@ -12,7 +12,7 @@ Enter 'inf' or 'infinity' for an infinite limit when prompted to enter a limit."
         try:
             user_input: str = input('Enter a symbol: ')
 
-            if user_input.isalpha() and len(user_input) == 1:
+            if (user_input.isalpha()) and (len(user_input) == 1):
                 symbol: sympy.core.symbol.Symbol = sympy.symbols(user_input)
             else:
                 print('Please enter a valid symbol...')
@@ -21,8 +21,8 @@ Enter 'inf' or 'infinity' for an infinite limit when prompted to enter a limit."
             math_expr: str = input('Enter a mathematical expression: ')
 
             user_input: str = input('Enter a limit: ')
-
-            if user_input.isalpha() and user_input != 'inf' and user_input != 'infinity':
+            requirements: list[bool] = [user_input.isalpha(), user_input != 'inf', user_input != 'infinity']
+            if all(requirements):
                 lim: float = w2n.word_to_num(user_input)
             else:
                 lim: float = float(user_input)
